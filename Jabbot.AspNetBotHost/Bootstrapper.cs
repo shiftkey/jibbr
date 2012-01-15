@@ -35,7 +35,9 @@ namespace Jabbot.AspNetBotHost
             //If the extensions folder exists then use them
             if (Directory.Exists(extensionsPath))
             {
-                catalog = new AggregateCatalog(new AssemblyCatalog(typeof(Bot).Assembly), new DirectoryCatalog(extensionsPath, "*.dll"));
+                catalog = new AggregateCatalog(
+                    new AssemblyCatalog(typeof(Bot).Assembly), 
+                    new DirectoryCatalog(extensionsPath, "*.dll"));
             }
             else
             {

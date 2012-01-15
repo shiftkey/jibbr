@@ -55,6 +55,12 @@
     <Reference Include="MomentApp">
       <HintPath>..\packages\MomentApp.0.0.2\lib\MomentApp.dll</HintPath>
     </Reference>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\packages\mongocsharpdriver.1.3.1\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\packages\mongocsharpdriver.1.3.1\lib\net35\MongoDB.Driver.dll</HintPath>
+    </Reference>
     <Reference Include="Nancy">
       <HintPath>..\packages\Nancy.0.9.0\lib\net40\Nancy.dll</HintPath>
     </Reference>
@@ -100,18 +106,26 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Content Include="Resources\Web.config" />
+    <Content Include="Sprockets\DisqusAnnouncer.dll" />
+    <Content Include="Sprockets\GithubAnnouncements.dll" />
     <Content Include="Sprockets\Hammock.ClientProfile.dll" />
     <Content Include="Sprockets\Hammock.dll" />
-    <Content Include="Sprockets\HelpSprocket.dll" />
+    <Content Include="Sprockets\Help.dll" />
     <Content Include="Sprockets\IPityTheFoolSprocket.dll" />
     <Content Include="Sprockets\Jabbot.CommandSprockets.dll" />
     <Content Include="Sprockets\Jabbot.dll" />
+    <Content Include="Sprockets\Jabbot.Extensions.CalculatorSprocket.dll" />
+    <Content Include="Sprockets\NCalc.dll" />
     <Content Include="Sprockets\Newtonsoft.Json.dll" />
+    <Content Include="Sprockets\QuizSprocket.dll" />
     <Content Include="Sprockets\SampleAnnouncement.dll" />
     <Content Include="Sprockets\SampleSprocket.dll" />
     <Content Include="Sprockets\SignalR.Client.dll" />
     <Content Include="Sprockets\TweetSharp.dll" />
     <Content Include="Sprockets\TwitterAnnouncer.dll" />
+    <Content Include="Sprockets\UserVoiceAnnouncer.dll" />
+    <Content Include="Sprockets\VolunteerSprocket.dll" />
+    <Content Include="Sprockets\WeatherSprocket.dll" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -127,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Components\MongoSettingsService.cs" />
     <Compile Include="Modules\HttpObject.cs" />
     <Compile Include="Modules\TalkMessage.cs" />
     <Compile Include="TinyMessenger.cs" />
@@ -190,6 +205,9 @@
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>$(ProjectDir)get-packages.cmd $(SolutionDir)</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
