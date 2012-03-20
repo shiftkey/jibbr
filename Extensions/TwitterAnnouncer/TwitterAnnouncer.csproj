@@ -33,11 +33,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Hammock">
-      <HintPath>..\..\packages\Hammock.1.2.7\lib\net40\Hammock.dll</HintPath>
+    <Reference Include="Hammock, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c148cfba29ed1a4d, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Hammock.1.2.9\lib\4.0\Hammock.dll</HintPath>
     </Reference>
-    <Reference Include="Hammock.ClientProfile">
-      <HintPath>..\..\packages\TweetSharp.2.1.2\lib\4.0\Hammock.ClientProfile.dll</HintPath>
+    <Reference Include="Hammock.ClientProfile, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c148cfba29ed1a4d, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\TweetSharp.2.1.3\lib\4.0\Hammock.ClientProfile.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.4.5.1\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -47,8 +50,8 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="TweetSharp">
-      <HintPath>..\..\packages\TweetSharp.2.1.2\lib\4.0\TweetSharp.dll</HintPath>
+    <Reference Include="TweetSharp, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c148cfba29ed1a4d, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\TweetSharp.2.1.3\lib\4.0\TweetSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

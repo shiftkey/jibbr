@@ -71,7 +71,7 @@ namespace BlogRss
 
         public bool Handle(ChatMessage message, IBot bot)
         {
-            return true;
+            return false;
         }
 
         private IEnumerable<UserAndBlogPair> BuildUserNameAndBlogUrlPairs(Bot bot)

@@ -78,7 +78,7 @@ namespace TeamCityAnnouncer
                 {
                     var build = _client.LastBuildByBuildConfigId(currentBuildConfig.Id);
 
-                    var project = new ProjectModel(currentProject.Name, currentProject.Id, currentBuildConfig.Name, build.StartDate,
+                    var project = new ProjectModel(currentProject.Name, currentProject.Id, currentBuildConfig.Name, build.StartDate.ToShortTimeString(),
                                                      build.Status, build.StatusText);
                     Update(bot, project);
                 }
