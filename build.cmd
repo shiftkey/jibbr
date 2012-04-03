@@ -12,7 +12,4 @@ for /D %%f in (".\Tests\*") do @(
 del /S /Q "%%f\obj\*"
 )
 
-:: find all test files and run them
-for /R %%F in (*Tests.dll) do (
-.\tools\xunit\xunit.console.clr4.exe %%F
-)
+powershell -File build.ps1
