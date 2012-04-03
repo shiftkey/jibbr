@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net;
 using System.Threading.Tasks;
 using Jabbot.Models;
 using Jabbot.Sprockets.Core;
 using SignalR.Client.Hubs;
+using SignalR.Client.Transports;
 
 namespace Jabbot
 {
@@ -97,7 +99,7 @@ namespace Jabbot
                 _chat.On<dynamic, string>("addUser", ProcessRoomArrival);
 
                 // Start the connection and wait
-                _connection.Start(SignalR.Client.Transports.Transport.LongPolling).Wait();
+                _connection.Start(new LongPollingTransport()).Wait();
 
                 // Join the chat
                 var success = _chat.Invoke<bool>("Join").Result;
@@ -499,7 +501,8 @@ namespace Jabbot
 
         private void Send(string command)
         {
-            _chat.Invoke("send", command).Wait();
+            _chat.Invoke("send", command, null).Wait();
         }
+
     }
 }
