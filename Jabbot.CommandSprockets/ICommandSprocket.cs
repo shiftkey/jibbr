@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
-using Jabbot.Models;
-using Jabbot.Sprockets.Core;
+using Jabbot.Core;
 
 namespace Jabbot.CommandSprockets
 {
@@ -13,7 +12,7 @@ namespace Jabbot.CommandSprockets
         bool HasArguments { get; }
         string Intitiator { get; }
         bool MayHandle(string initiator, string command);
-        ChatMessage Message { get; }
+        ChatMessage ChatMessage { get; }
         IEnumerable<string> SupportedCommands { get; }
         IEnumerable<string> SupportedInitiators { get; }
     }

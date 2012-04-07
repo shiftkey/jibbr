@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Primitives;
 using System.Configuration;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Hosting;
-using Jabbot.Sprockets.Core;
+using JabbR.Client;
+using Jabbot.Core;
 
 namespace Jabbot.ConsoleBotHost
 {
@@ -40,23 +43,26 @@ namespace Jabbot.ConsoleBotHost
                 var announcements = container.GetExportedValues<IAnnounce>();
 
                 Console.WriteLine(String.Format("Connecting to {0}...", _serverUrl));
-                Bot bot = new Bot(_serverUrl, _botName, _botPassword); 
+
+                var client = new JabbRClient(_serverUrl);
+                client.Connect(_botName, _botPassword);
                 
-                foreach (var s in container.GetExportedValues<ISprocket>())
-                    bot.AddSprocket(s);
+                //foreach (var s in container.GetExportedValues<ISprocket>())
+                //    bot.AddSprocket(s);
 
-                bot.PowerUp();
-                JoinRooms(bot);
-                var users = bot.GetUsers(bot.Rooms.First());
-                var user = bot.GetUserInfo(bot.Rooms.First(), users.First().Name.ToString());
+                JoinRooms(client);
 
-                scheduler.Start(announcements, bot);
+                var firstRoom = client.GetRooms().Result;
+
+                client.Send("Hello World", firstRoom.FirstOrDefault().Name);
+
+                //scheduler.Start(announcements, client);
 
                 Console.Write("Press enter to quit...");
                 Console.ReadLine();
 
                 scheduler.Stop();
-                bot.ShutDown();
+                client.Disconnect();
 
                 _appShouldExit = true;
             }
@@ -64,41 +70,23 @@ namespace Jabbot.ConsoleBotHost
             {
                 Console.WriteLine("ERROR: " + e.GetBaseException().Message);
             }
-
         }
-        private static void JoinRooms(Bot bot)
+
+        private static void JoinRooms(JabbRClient client)
         {
-            foreach (var room in _botRooms.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(r => r.Trim()))
+            var pendingTasks = new List<Task>();
+
+            foreach (var room in _botRooms.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(r => r.Trim()))
             {
                 Console.Write("Joining {0}...", room);
-                if (TryCreateRoomIfNotExists(room, bot))
-                {
-                    bot.Join(room);
-                    Console.WriteLine("OK");
-                }
-                else
-                {
-                    Console.WriteLine("Failed");
-                }
-            }
-        }
-        private static bool TryCreateRoomIfNotExists(string roomName, Bot bot)
-        {
-            try
-            {
-                bot.CreateRoom(roomName);
-            }
-            catch (AggregateException e)
-            {
-                if (!e.GetBaseException().Message.Equals(string.Format("The room '{0}' already exists", roomName),
-                        StringComparison.OrdinalIgnoreCase))
-                {
-                    return false;
-                }
+                var task = client.JoinRoom(room);
+                pendingTasks.Add(task);
+                task.Start();
             }
 
-            return true;
+            Task.WaitAll(pendingTasks.ToArray());
         }
+        
 
         private static CompositionContainer CreateCompositionContainer()
         {
@@ -110,13 +98,13 @@ namespace Jabbot.ConsoleBotHost
             if (Directory.Exists(extensionsPath))
             {
                 catalog = new AggregateCatalog(
-                    new AssemblyCatalog(typeof(Bot).Assembly),
+                    new AssemblyCatalog(typeof(IBot).Assembly),
                     new AssemblyCatalog(typeof(Program).Assembly), 
                     new DirectoryCatalog(extensionsPath, "*.dll"));
             }
             else
             {
-                catalog = new AssemblyCatalog(typeof(Bot).Assembly);
+                catalog = new AssemblyCatalog(typeof(IBot).Assembly);
             }
 
             return new CompositionContainer(catalog);

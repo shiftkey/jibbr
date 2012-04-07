@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Jabbot;
 using Jabbot.CommandSprockets;
-using Jabbot.Models;
-using Jabbot.Sprockets.Core;
 
 namespace QuizSprocket
 {
@@ -29,7 +26,7 @@ namespace QuizSprocket
                         + "answer:\t" + "answer the last asked question" + Environment.NewLine
                         + "score:\t" + "see your  the last asked question" + Environment.NewLine
                         + "top10/topten:\t" + "see the top10 of the scoretable" + Environment.NewLine
-                        + "info/help:\t" + "this message" + Environment.NewLine;
+                        + "info/help:\t" + "this ChatMessage" + Environment.NewLine;
 
             _random = new Random();
 
@@ -270,7 +267,7 @@ namespace QuizSprocket
 
             var orderedScores = _scoreTable.Select(t => new { Name = t.Key, Score = t.Value }).OrderByDescending(t => t.Score).Take(10).ToList();
 
-            if (orderedScores.Count == 0) { Bot.Say("No scores recorded", Message.Receiver); return true; }
+            if (orderedScores.Count == 0) { Bot.Say("No scores recorded", ChatMessage.Room); return true; }
 
             stringBuilder.AppendLine("Scoretable:");
 
@@ -280,7 +277,8 @@ namespace QuizSprocket
                 stringBuilder.AppendLine(string.Format("{0,2} - {1} {2}", index + 1, orderedScore.Name.PadRight(15), orderedScore.Score));
             }
 
-            Bot.Say(stringBuilder.ToString(), Message.Receiver);
+            // TODO: need to get current room
+            Bot.Say(stringBuilder.ToString(), "");
 
             return true;
         }
@@ -290,9 +288,9 @@ namespace QuizSprocket
             int currentScore;
 
             Bot.Say(
-                _scoreTable.TryGetValue(Message.Sender, out currentScore)
-                    ? string.Format("{0} has a score of {1}", Message.Sender, currentScore)
-                    : string.Format("No score recorded for {0}", Message.Sender), Message.Receiver);
+                _scoreTable.TryGetValue(ChatMessage.User.Name, out currentScore)
+                    ? string.Format("{0} has a score of {1}", ChatMessage.User.Name, currentScore)
+                    : string.Format("No score recorded for {0}", ChatMessage.User.Name), ChatMessage.Room);
 
             return true;
         }
@@ -304,25 +302,29 @@ namespace QuizSprocket
             var correct = _lastAskedQuestion != null
                             && (answer.Equals(_lastAskedQuestion.Item2, StringComparison.InvariantCultureIgnoreCase)
                             || (longestCommonSubstringLength / (decimal)_lastAskedQuestion.Item2.Length) > CorrectnessFraction
-                            || (levenshteinDistance / (decimal)_lastAskedQuestion.Item2.Length) < (1 - CorrectnessFraction)); 
+                            || (levenshteinDistance / (decimal)_lastAskedQuestion.Item2.Length) < (1 - CorrectnessFraction));
 
             if (correct)
             {
-                Bot.Say(string.Format("Correct {0}, the answer is {1}. That was brilliant!", Message.Sender, _lastAskedQuestion.Item2), Message.Receiver);
+                // TODO: need to get current room
+                Bot.Say(string.Format("Correct {0}, the answer is {1}. That was brilliant!", ChatMessage.User.Name, _lastAskedQuestion.Item2), "");
                 int currentScore = 0;
 
-                if (_scoreTable.TryGetValue(Message.Sender, out currentScore))
+                if (_scoreTable.TryGetValue(ChatMessage.User.Name, out currentScore))
                 {
                     currentScore += _lastAskedQuestion.Item3;
-                    _scoreTable[Message.Sender] = currentScore;
+                    _scoreTable[ChatMessage.User.Name] = currentScore;
                 }
                 else
-                    _scoreTable.Add(Message.Sender, _lastAskedQuestion.Item3);
+                    _scoreTable.Add(ChatMessage.User.Name, _lastAskedQuestion.Item3);
 
                 _lastAskedQuestion = null;
             }
             else
-                Bot.Say(string.Format("Wrong!"), Message.Receiver);
+            {
+                // TODO: need to get current room
+                Bot.Say(string.Format("Wrong!"), "");
+            }
 
 
             return correct;
@@ -330,14 +332,14 @@ namespace QuizSprocket
 
         private string PassAnswer()
         {
-            var answer = Message.Content.Substring(Message.Content.LastIndexOf(Command, StringComparison.Ordinal) + Command.Length).Trim();
+            var answer = ChatMessage.Content.Substring(ChatMessage.Content.LastIndexOf(Command, StringComparison.Ordinal) + Command.Length).Trim();
 
             return answer;
         }
 
         private bool ExecuteShowInfo()
         {
-            Bot.PrivateReply(Message.Sender, string.Format(_helpInfo, Message.Sender));
+            Bot.PrivateReply(ChatMessage.User.Name, string.Format(_helpInfo, ChatMessage.User.Name));
 
             return true;
         }
@@ -348,9 +350,15 @@ namespace QuizSprocket
                 _lastAskedQuestion = null;
 
             if (_lastAskedQuestion != null)
-                Bot.PrivateReply("A question is currently waiting for the correct answer", Message.Receiver);
+            {
+                // TODO: need to get current room
+                Bot.PrivateReply("A question is currently waiting for the correct answer", "");
+            }
             else
-                Bot.Say(GetQuestion(questionType), Message.Receiver);
+            {
+                // TODO: need to get current room
+                Bot.Say(GetQuestion(questionType), "");
+            }
 
             return true;
         }

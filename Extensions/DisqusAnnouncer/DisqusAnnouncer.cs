@@ -4,8 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
-using Jabbot;
-using Jabbot.Sprockets.Core;
+using Jabbot.Core;
 using Newtonsoft.Json;
 
 namespace DisqusAnnouncer
@@ -24,7 +23,7 @@ namespace DisqusAnnouncer
 
         public static bool Lock { get; set; }
 
-        public void Execute(Bot bot)
+        public void Execute(IBot bot)
         {
             if (Lock == true) return;
             Lock = true;

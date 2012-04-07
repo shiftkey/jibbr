@@ -2,9 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Jabbot;
-using Jabbot.Models;
-using Jabbot.Sprockets;
+using Jabbot.Core;
 
 namespace VolunteerSprocket
 {
@@ -15,18 +13,19 @@ namespace VolunteerSprocket
             get { return new Regex(@"[-_./""\w\s]*volunteer some[-_./""\w\s]*"); }
         }
 
-        protected override void ProcessMatch(Match match, ChatMessage message, IBot bot)
+        protected override void ProcessMatch(Match match, ChatMessage chatMessage, IBot bot)
         {
             Debug.WriteLine("Volunteering!");
-            if (message.Content.StartsWith(bot.Name) || message.Content.StartsWith("@" + bot.Name))
+            if (chatMessage.Content.StartsWith(bot.Name) || chatMessage.Content.StartsWith("@" + bot.Name))
             {
-                var users = bot.GetUsers(message.Receiver).ToList<dynamic>();
+                var users = bot.GetUsers(chatMessage.User.Name).ToList<dynamic>();
 
                 users.RemoveAll(u => u.Name == bot.Name);
 
                 if(users.Count == 0)
                 {
-                    bot.Say("Bot, you can't tell yourself to do that", message.Receiver);
+                    // TODO: .Receiver is a room?
+                    bot.Say("Bot, you can't tell yourself to do that", ""); // ChatMessage.Receiver);
                     return;
                 }
 
@@ -34,7 +33,7 @@ namespace VolunteerSprocket
 
                 var randomUser = random.Next(0, users.Count() - 1);
 
-                bot.Say(string.Format("I volunteer {0} for that!", users[randomUser].Name), message.Receiver);
+                bot.Say(string.Format("I volunteer {0} for that!", users[randomUser].Name), ""); // ChatMessage.Receiver);
             }
         }
     }

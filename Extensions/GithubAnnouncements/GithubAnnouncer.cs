@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using GithubAnnouncements.Tasks;
-using Jabbot;
-using Jabbot.Sprockets.Core;
+using Jabbot.Core;
 
 namespace GithubAnnouncements
 {
@@ -28,7 +27,7 @@ namespace GithubAnnouncements
             get { return "Github Bot"; }
         }
 
-        public void Execute(Bot bot)
+        public void Execute(IBot bot)
         {
             var baseUrl = string.Format(GitHub.UrlFormat, Account, Repo);
             foreach (var task in Tasks)

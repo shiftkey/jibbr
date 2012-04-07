@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
-using Jabbot;
-using Jabbot.Sprockets.Core;
+using Jabbot.Core;
 using TweetSharp;
 
 namespace TwitterAnnouncer
@@ -26,7 +25,7 @@ namespace TwitterAnnouncer
 			get { return TimeSpan.FromMinutes(10); }
 		}
 
-		public void Execute(Bot bot)
+		public void Execute(IBot bot)
 		{
 			var now = DateTime.Now;
 

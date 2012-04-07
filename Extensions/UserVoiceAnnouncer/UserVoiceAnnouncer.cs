@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
-using Jabbot;
-using Jabbot.Sprockets.Core;
+using Jabbot.Core;
 using Newtonsoft.Json;
 
 namespace UserVoiceAnnouncer
@@ -24,7 +23,7 @@ namespace UserVoiceAnnouncer
 
         public static bool Lock { get; set; }
 
-        public void Execute(Bot bot)
+        public void Execute(IBot bot)
         {
             if (Lock == true) return;
             Lock = true;
@@ -39,8 +38,7 @@ namespace UserVoiceAnnouncer
             {
                     foreach (var room in bot.Rooms)
                     {
-                        bot.Say(
-                            string.Format("{0}", suggestion.url), room);
+                        bot.Say(string.Format("{0}", suggestion.url), room);
                     }
 
                 LastUpdate = DateTime.Parse(suggestion.created_at.ToString());

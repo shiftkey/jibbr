@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Jabbot;
-using Jabbot.Models;
+using Jabbot.Core;
 using Moq;
 using NUnit.Framework;
 using Q = QuizSprocket;

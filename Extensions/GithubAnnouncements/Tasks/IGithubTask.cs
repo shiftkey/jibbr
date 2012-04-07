@@ -1,5 +1,5 @@
 using System.ComponentModel.Composition;
-using Jabbot;
+using Jabbot.Core;
 
 namespace GithubAnnouncements.Tasks
 {

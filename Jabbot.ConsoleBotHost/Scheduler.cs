@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Timers;
-using Jabbot.Sprockets.Core;
+using Jabbot.Core;
 
 namespace Jabbot.ConsoleBotHost
 {
@@ -10,9 +10,9 @@ namespace Jabbot.ConsoleBotHost
     {
         private readonly Timer _timer = new Timer { Interval = 60000 };
         private readonly IDictionary<IAnnounce, DateTime> _scheduledAnnouncements = new Dictionary<IAnnounce, DateTime>();
-        private Bot _bot;
+        private IBot _bot;
 
-        public void Start(IEnumerable<IAnnounce> tasks, Bot bot)
+        public void Start(IEnumerable<IAnnounce> tasks, IBot bot)
         {
             _bot = bot;
 

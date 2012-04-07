@@ -1,6 +1,5 @@
 ﻿using System;
-using Jabbot;
-using Jabbot.Sprockets.Core;
+using Jabbot.Core;
 
 namespace SampleAnnouncement
 {
@@ -11,7 +10,7 @@ namespace SampleAnnouncement
             get { return TimeSpan.FromMinutes(10); }
 		}
 
-		public void Execute(Bot bot)
+		public void Execute(IBot bot)
 		{
 			var offset = TimeZoneInfo.FindSystemTimeZoneById("AUS Eastern Standard Time");
 			var startingPoint = DateTime.UtcNow;

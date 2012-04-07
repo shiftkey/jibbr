@@ -8,7 +8,7 @@ using System.Web.Hosting;
 using IronJS;
 using IronJS.Hosting;
 using IronJS.Native;
-using Jabbot.Sprockets.Core;
+using Jabbot.Core;
 using Nancy;
 using System.Diagnostics;
 using MomentApp;
@@ -22,12 +22,12 @@ namespace Jabbot.AspNetBotHost.Modules
         private static readonly string _hostBaseUrl = ConfigurationManager.AppSettings["Application.HostBaseUrl"];
         private static readonly string _botRooms = ConfigurationManager.AppSettings["Bot.RoomList"];
         private static readonly string _momentApiKey = ConfigurationManager.AppSettings["Moment.ApiKey"];
-        public static Bot _bot;
+        public static IBot _bot;
         private readonly IEnumerable<ISprocket> _sprockets;
         private readonly IEnumerable<ISprocketInitializer> _sprocketInitializers;
         public static Dictionary<Regex, FunctionObject> HubotRespond = new Dictionary<Regex, FunctionObject>();
         public static Dictionary<Regex, FunctionObject> HubotListen = new Dictionary<Regex, FunctionObject>();
-        public BotHostModule(Bot bot, IEnumerable<ISprocket> sprockets, IEnumerable<ISprocketInitializer> sprocketInitializers)
+        public BotHostModule(IBot bot, IEnumerable<ISprocket> sprockets, IEnumerable<ISprocketInitializer> sprocketInitializers)
             : base("bot")
         {
             _bot = bot;
@@ -119,24 +119,24 @@ namespace Jabbot.AspNetBotHost.Modules
             {
                 ScheduleKeepAlive(_hostBaseUrl + "/keepalive");
             }
-            foreach (var sprocket in _sprockets)
-                _bot.AddSprocket(sprocket);
+            //foreach (var sprocket in _sprockets)
+            //    _bot.AddSprocket(sprocket);
 
-            _bot.PowerUp(_sprocketInitializers);
+            //_bot.PowerUp(_sprocketInitializers);
             JoinRooms(_bot);
 
-            _bot.MessageReceived += BotMessageReceived;
+            //_bot.MessageReceived += BotMessageReceived;
             LoadCoffeeScript();
             TinyMessengerHub.Instance.Subscribe<TalkMessage>(m => _bot.Say(m.Text, _bot.Rooms.First()));
         }
 
         private static void ShutDownBot()
         {
-            _bot.ShutDown();
+            _bot.Disconnect();
             _bot = null;
         }
 
-        private static void JoinRooms(Bot bot)
+        private static void JoinRooms(IBot bot)
         {
             foreach (var room in _botRooms.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(r => r.Trim()))
             {
@@ -152,25 +152,8 @@ namespace Jabbot.AspNetBotHost.Modules
                 }
             }
         }
-        private static bool TryCreateRoomIfNotExists(string roomName, Bot bot)
-        {
-            try
-            {
-                bot.CreateRoom(roomName);
-            }
-            catch (AggregateException e)
-            {
-                if (!e.GetBaseException().Message.Equals(string.Format("The room '{0}' already exists", roomName),
-                        StringComparison.OrdinalIgnoreCase))
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        static void BotMessageReceived(Models.ChatMessage obj)
+        
+        static void BotMessageReceived(Message obj)
         {
             obj.Content = Regex.Replace(obj.Content, @"<(.|\n)*?>", string.Empty);
 

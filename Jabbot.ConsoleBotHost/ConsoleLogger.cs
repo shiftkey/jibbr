@@ -1,4 +1,5 @@
 using System;
+using Jabbot.Core;
 
 namespace Jabbot.ConsoleBotHost
 {

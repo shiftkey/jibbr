@@ -50,9 +50,9 @@
     <Compile Include="RestrictedCommandSprocket.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Jabbot\Jabbot.csproj">
-      <Project>{478BFCF7-9397-49A7-AFD4-060B6B749E77}</Project>
-      <Name>Jabbot</Name>
+    <ProjectReference Include="..\Jabbot.Core\Jabbot.Core.csproj">
+      <Project>{78C0F2F3-53AE-4A66-8B6C-BD09B4CB9473}</Project>
+      <Name>Jabbot.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

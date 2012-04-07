@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Jabbot;
+using Jabbot.Core;
 
 namespace GithubAnnouncements.Extensions
 {

@@ -3,9 +3,8 @@ using System.ComponentModel.Composition.Primitives;
 using System.Configuration;
 using System.IO;
 using System.Web.Hosting;
-using Jabbot.Sprockets.Core;
+using Jabbot.Core;
 using Nancy;
-using TinyMessenger;
 
 namespace Jabbot.AspNetBotHost
 {
@@ -23,7 +22,7 @@ namespace Jabbot.AspNetBotHost
             container.Register(mefcontainer.GetExportedValues<IAnnounce>());
             container.Register(mefcontainer.GetExportedValues<ISprocketInitializer>());
             container.Register(mefcontainer.GetExportedValues<ISprocket>());
-            container.Register(new Bot(_serverUrl, _botName, _botPassword));
+            // container.Register(new Bot(_serverUrl, _botName, _botPassword));
         }
 
         private static CompositionContainer CreateCompositionContainer()
@@ -35,11 +34,11 @@ namespace Jabbot.AspNetBotHost
             //If the extensions folder exists then use them
             if (Directory.Exists(extensionsPath))
             {
-                catalog = new AggregateCatalog(new AssemblyCatalog(typeof(Bot).Assembly), new DirectoryCatalog(extensionsPath, "*.dll"));
+                catalog = new AggregateCatalog(new AssemblyCatalog(typeof(IBot).Assembly), new DirectoryCatalog(extensionsPath, "*.dll"));
             }
             else
             {
-                catalog = new AssemblyCatalog(typeof(Bot).Assembly);
+                catalog = new AssemblyCatalog(typeof(IBot).Assembly);
             }
 
             return new CompositionContainer(catalog);

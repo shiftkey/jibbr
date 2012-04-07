@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using Jabbot.Sprockets.Core;
+using Jabbot.Core;
 
 namespace Jabbot.ConsoleBotHost
 {
     public interface IScheduler
     {
-        void Start(IEnumerable<IAnnounce> tasks, Bot bot);
+        void Start(IEnumerable<IAnnounce> tasks, IBot bot);
         void Stop();
     }
 }

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Jabbot;
+﻿using Jabbot.Core;
 using Jabbot.Extensions;
-using Jabbot.Models;
 using Moq;
 using NUnit.Framework;
 

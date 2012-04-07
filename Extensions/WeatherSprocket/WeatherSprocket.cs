@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using Jabbot;
-using Jabbot.Models;
-using Jabbot.Sprockets;
+using Jabbot.Core;
 using Newtonsoft.Json.Linq;
 using System.Net;
 using System.IO;
@@ -11,18 +9,17 @@ namespace WeatherSprocket
 {
     public class WeatherSprocket : RegexSprocket
     {
-
         public override Regex Pattern
         {
             get { return new Regex(@"(?<=\bweather[ ])\d{4,5}", RegexOptions.IgnoreCase); }
         }
 
-        protected override void ProcessMatch(Match match, ChatMessage message, IBot bot)
+        protected override void ProcessMatch(Match match, ChatMessage chatMessage, IBot bot)
         {
             if (match.Length > 0)
             {
                 var matchResult = match.Captures[0].ToString();
-                bot.Say(getWeather(matchResult), message.Receiver); ;
+                bot.Say(getWeather(matchResult), chatMessage.User.Name); ;
             }
         }
 

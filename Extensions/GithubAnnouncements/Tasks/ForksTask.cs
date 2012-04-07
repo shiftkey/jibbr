@@ -3,6 +3,7 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using GithubAnnouncements.Extensions;
 using Jabbot;
+using Jabbot.Core;
 
 namespace GithubAnnouncements.Tasks
 {
