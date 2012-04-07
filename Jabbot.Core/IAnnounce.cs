@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using JabbR.Client;
+using JabbR.Client.Models;
 
 namespace Jabbot.Core
 {
@@ -31,6 +32,7 @@ namespace Jabbot.Core
     public class Bot : IBot
     {
         private readonly JabbRClient _client;
+        private readonly IList<ISprocket> _sprockets = new List<ISprocket>();
 
         public Bot(JabbRClient client)
         {
@@ -62,6 +64,16 @@ namespace Jabbot.Core
         {
             return _client.GetRooms().ContinueWith(c => c.Result.Select(r => r.Name));
         }
+
+        public void Connect(string botName, string botPassword)
+        {
+            _client.Connect(botName, botPassword);
+        }
+
+        public void AddSprocket(ISprocket sprocket)
+        {
+            _sprockets.Add(sprocket);
+        }
     }
 
     public interface IBot
@@ -73,30 +85,25 @@ namespace Jabbot.Core
         Task<IEnumerable<string>> GetRooms();
     }
 
+    public interface IProxy {
+        string Get(string requestUri);
+    }
+
     public interface ISprocket { }
 
     public interface IUnhandledMessageSprocket : ISprocket { }
 
     public interface ISprocketInitializer { }
 
-    public class CommandSprocket : ISprocket { }
-
-    public class RegexSprocket : ISprocket
+    public  abstract class RegexSprocket : ISprocket
     {
-        public virtual Regex Pattern
-        {
-            get { throw new NotImplementedException(); }
-        }
+        public abstract Regex Pattern { get; }
 
-        protected virtual void ProcessMatch(Match match, ChatMessage chatMessage, IBot bot)
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void ProcessMatch(Match match, ChatMessage chatMessage, IBot bot);
     }
 
     public interface ILogger
     {
-
         void WriteMessage(string p0);
         void Write(string format, params object[] args);
     }

@@ -14,12 +14,11 @@ namespace Jabbot.ConsoleBotHost
 {
     class Program
     {
-        private static readonly string _serverUrl = ConfigurationManager.AppSettings["Bot.Server"];
-        private static readonly string _botName = ConfigurationManager.AppSettings["Bot.Name"];
-        private static readonly string _botPassword = ConfigurationManager.AppSettings["Bot.Password"];
-        private static readonly string _botRooms = ConfigurationManager.AppSettings["Bot.RoomList"];
-        private static bool _appShouldExit = false;
-
+        private static readonly string ServerUrl = ConfigurationManager.AppSettings["Bot.Server"];
+        private static readonly string BotName = ConfigurationManager.AppSettings["Bot.Name"];
+        private static readonly string BotPassword = ConfigurationManager.AppSettings["Bot.Password"];
+        private static readonly string BotRooms = ConfigurationManager.AppSettings["Bot.RoomList"];
+        private static bool _appShouldExit;
 
         private const string ExtensionsFolder = "Sprockets";
 
@@ -42,21 +41,23 @@ namespace Jabbot.ConsoleBotHost
                 // Add all the sprockets to the sprocket list
                 var announcements = container.GetExportedValues<IAnnounce>();
 
-                Console.WriteLine(String.Format("Connecting to {0}...", _serverUrl));
+                Console.WriteLine(String.Format("Connecting to {0}...", ServerUrl));
 
-                var client = new JabbRClient(_serverUrl);
-                client.Connect(_botName, _botPassword);
+                var client = new JabbRClient(ServerUrl);
+                var bot = new Bot(client);
+
+                bot.Connect(BotName, BotPassword);
                 
-                //foreach (var s in container.GetExportedValues<ISprocket>())
-                //    bot.AddSprocket(s);
+                foreach (var s in container.GetExportedValues<ISprocket>())
+                    bot.AddSprocket(s);
 
                 JoinRooms(client);
 
+                // TODO: deprecate this example
                 var firstRoom = client.GetRooms().Result;
-
                 client.Send("Hello World", firstRoom.FirstOrDefault().Name);
 
-                //scheduler.Start(announcements, client);
+                scheduler.Start(announcements, bot);
 
                 Console.Write("Press enter to quit...");
                 Console.ReadLine();
@@ -76,7 +77,7 @@ namespace Jabbot.ConsoleBotHost
         {
             var pendingTasks = new List<Task>();
 
-            foreach (var room in _botRooms.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(r => r.Trim()))
+            foreach (var room in BotRooms.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(r => r.Trim()))
             {
                 Console.Write("Joining {0}...", room);
                 var task = client.JoinRoom(room);

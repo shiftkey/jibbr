@@ -1,0 +1,796 @@
+﻿
+{
+	"response": {
+		"version": "0.1"
+		,"termsofService": "http://www.wunderground.com/weather/api/d/terms.html"
+		,"features": {
+		"geolookup": 1
+		,
+		"conditions": 1
+		,
+		"forecast": 1
+		}
+	}
+		,	"location": {
+		"type":"CITY",
+		"country":"US",
+		"country_iso3166":"US",
+		"country_name":"USA",
+		"state":"CA",
+		"city":"Los Angeles",
+		"tz_short":"PDT",
+		"tz_long":"America/Los_Angeles",
+		"lat":"33.97457886",
+		"lon":"-118.24745941",
+		"zip":"90001",
+		"magic":"1",
+		"wmo":"99999",
+		"l":"/q/zmw:90001.1.99999",
+		"requesturl":"US/CA/Los_Angeles.html",
+		"wuiurl":"http://www.wunderground.com/US/CA/Los_Angeles.html",
+		"nearby_weather_stations": {
+		"airport": {
+		"station": [
+		{ "city":"Los Angeles Downtown", "state":"CA", "country":"US", "icao":"KCQT", "lat":"34.04999924", "lon":"-118.23999786" },
+		{ "city":"Hawthorne", "state":"CA", "country":"US", "icao":"KHHR", "lat":"33.91999817", "lon":"-118.33000183" },
+		{ "city":"Los Angeles", "state":"CA", "country":"US", "icao":"KLAX", "lat":"33.93999863", "lon":"-118.41000366" },
+		{ "city":"Santa Monica", "state":"CA", "country":"US", "icao":"KSMO", "lat":"34.02000046", "lon":"-118.44999695" }
+		]
+		}
+		,
+		"pws": {
+		"station": [
+		{
+		"neighborhood":"",
+		"city":"South Gate",
+		"state":"CA",
+		"country":"US",
+		"id":"KCASOUTH11",
+		"distance_km":8,
+		"distance_mi":4
+		},
+		{
+		"neighborhood":"MesoWest Compton-700 North Bullis Road CA US CARB",
+		"city":"Rancho Dominguez",
+		"state":"CA",
+		"country":"US",
+		"id":"MCQ194",
+		"distance_km":9,
+		"distance_mi":5
+		},
+		{
+		"neighborhood":"Inglewood",
+		"city":"Inglewood",
+		"state":"CA",
+		"country":"US",
+		"id":"KCAINGLE2",
+		"distance_km":9,
+		"distance_mi":5
+		},
+		{
+		"neighborhood":"MesoWest Los Angeles-North Main Street CA US CARB",
+		"city":"Los Angeles",
+		"state":"CA",
+		"country":"US",
+		"id":"MCQ070",
+		"distance_km":10,
+		"distance_mi":6
+		},
+		{
+		"neighborhood":"Los Angeles State Historic Park",
+		"city":"Los Angeles",
+		"state":"CA",
+		"country":"US",
+		"id":"KCALOSAN48",
+		"distance_km":10,
+		"distance_mi":6
+		},
+		{
+		"neighborhood":"Downey 90240",
+		"city":"Downey",
+		"state":"CA",
+		"country":"US",
+		"id":"KCADOWNE4",
+		"distance_km":10,
+		"distance_mi":6
+		},
+		{
+		"neighborhood":"Montebello, West side near Golf Course.",
+		"city":"Montebello",
+		"state":"CA",
+		"country":"US",
+		"id":"KCAMONTE7",
+		"distance_km":12,
+		"distance_mi":7
+		},
+		{
+		"neighborhood":"Near Downey Cemetery",
+		"city":"Downey",
+		"state":"CA",
+		"country":"US",
+		"id":"KCADOWNE2",
+		"distance_km":12,
+		"distance_mi":7
+		},
+		{
+		"neighborhood":"CBS Radio, Venice and Fairfax",
+		"city":"Los Angeles",
+		"state":"CA",
+		"country":"US",
+		"id":"KXTCALOS2",
+		"distance_km":13,
+		"distance_mi":8
+		},
+		{
+		"neighborhood":"MacDumes - Park La Brea",
+		"city":"Los Angeles",
+		"state":"CA",
+		"country":"US",
+		"id":"KCALOSAN51",
+		"distance_km":14,
+		"distance_mi":8
+		},
+		{
+		"neighborhood":"Debs Park",
+		"city":"Los Angeles",
+		"state":"CA",
+		"country":"US",
+		"id":"KCALOSAN42",
+		"distance_km":14,
+		"distance_mi":8
+		},
+		{
+		"neighborhood":"RAWS MT. WASHINGTON CA US",
+		"city":"Los Angeles",
+		"state":"CA",
+		"country":"US",
+		"id":"MDGRC1",
+		"distance_km":14,
+		"distance_mi":8
+		},
+		{
+		"neighborhood":"Elephant Hill",
+		"city":"South Pasadena",
+		"state":"CA",
+		"country":"US",
+		"id":"KCASOUTH13",
+		"distance_km":15,
+		"distance_mi":9
+		},
+		{
+		"neighborhood":"APRSWXNET Long Beach CA US",
+		"city":"Long Beach",
+		"state":"CA",
+		"country":"US",
+		"id":"MD6211",
+		"distance_km":15,
+		"distance_mi":9
+		},
+		{
+		"neighborhood":"APRSWXNET Long Beach CA US",
+		"city":"Long Beach",
+		"state":"CA",
+		"country":"US",
+		"id":"MAT207",
+		"distance_km":15,
+		"distance_mi":9
+		},
+		{
+		"neighborhood":"El Segundo",
+		"city":"El Segundo",
+		"state":"CA",
+		"country":"US",
+		"id":"KCAELSEG4",
+		"distance_km":16,
+		"distance_mi":9
+		},
+		{
+		"neighborhood":"Redondo Beach",
+		"city":"Redondo Beach",
+		"state":"CA",
+		"country":"US",
+		"id":"KCAREDON2",
+		"distance_km":16,
+		"distance_mi":9
+		},
+		{
+		"neighborhood":"Sally\u0027s house in",
+		"city":"Manhattan Beach",
+		"state":"CA",
+		"country":"US",
+		"id":"KCALOSAN10",
+		"distance_km":16,
+		"distance_mi":10
+		},
+		{
+		"neighborhood":"Spaulding Square",
+		"city":"Los Angeles",
+		"state":"CA",
+		"country":"US",
+		"id":"KCALOSAN54",
+		"distance_km":16,
+		"distance_mi":10
+		},
+		{
+		"neighborhood":"MesoWest Pico Rivera-4144 San Gabriel CA US CARB",
+		"city":"Pico Rivera",
+		"state":"CA",
+		"country":"US",
+		"id":"MCQ192",
+		"distance_km":16,
+		"distance_mi":10
+		},
+		{
+		"neighborhood":"Bixby Knolls",
+		"city":"Long Beach",
+		"state":"CA",
+		"country":"US",
+		"id":"KCALONGB8",
+		"distance_km":16,
+		"distance_mi":10
+		},
+		{
+		"neighborhood":"MesoWest Los Angeles-Westchester Parkway CA US CARB",
+		"city":"Playa Del Rey",
+		"state":"CA",
+		"country":"US",
+		"id":"MCQ157",
+		"distance_km":17,
+		"distance_mi":10
+		},
+		{
+		"neighborhood":"APRSWXNET West Hollywood CA US",
+		"city":"West Hollywood",
+		"state":"CA",
+		"country":"US",
+		"id":"MD9940",
+		"distance_km":17,
+		"distance_mi":10
+		},
+		{
+		"neighborhood":"Paseo Del Rey/Manchester",
+		"city":"Playa Del Rey",
+		"state":"CA",
+		"country":"US",
+		"id":"KCAPLAYA2",
+		"distance_km":17,
+		"distance_mi":10
+		},
+		{
+		"neighborhood":"WehoDaily - Sunset Strip",
+		"city":"West Hollywood",
+		"state":"CA",
+		"country":"US",
+		"id":"KCAWESTH5",
+		"distance_km":17,
+		"distance_mi":10
+		},
+		{
+		"neighborhood":"MesoWest North Long Beach CA US CARB",
+		"city":"Long Beach",
+		"state":"CA",
+		"country":"US",
+		"id":"MCQ068",
+		"distance_km":17,
+		"distance_mi":10
+		},
+		{
+		"neighborhood":"Sunset Strip, West Hollywood",
+		"city":"West Hollywood",
+		"state":"CA",
+		"country":"US",
+		"id":"KCAWESTH6",
+		"distance_km":17,
+		"distance_mi":10
+		},
+		{
+		"neighborhood":"Redondo Beach",
+		"city":"Redondo Beach",
+		"state":"CA",
+		"country":"US",
+		"id":"KCAREDON14",
+		"distance_km":17,
+		"distance_mi":10
+		},
+		{
+		"neighborhood":"Venice",
+		"city":"Los Angeles",
+		"state":"CA",
+		"country":"US",
+		"id":"KCALOSAN46",
+		"distance_km":17,
+		"distance_mi":10
+		},
+		{
+		"neighborhood":"Sand Section",
+		"city":"Manhattan Beach",
+		"state":"CA",
+		"country":"US",
+		"id":"KCAMANHA3",
+		"distance_km":17,
+		"distance_mi":10
+		},
+		{
+		"neighborhood":"Marineland",
+		"city":"Hermosa Beach",
+		"state":"CA",
+		"country":"US",
+		"id":"KCAHERMO2",
+		"distance_km":18,
+		"distance_mi":10
+		},
+		{
+		"neighborhood":"Laurel Canyon - Kirkwood Bowl",
+		"city":"Los Angeles",
+		"state":"CA",
+		"country":"US",
+		"id":"KCALOSAN58",
+		"distance_km":18,
+		"distance_mi":11
+		}
+		]
+		}
+		}
+	}
+		,	"current_observation": {
+		"image": {
+		"url":"http://icons-ak.wxug.com/graphics/wu2/logo_130x80.png",
+		"title":"Weather Underground",
+		"link":"http://www.wunderground.com"
+		},
+		"display_location": {
+		"full":"Los Angeles, CA",
+		"city":"Los Angeles",
+		"state":"CA",
+		"state_name":"California",
+		"country":"US",
+		"country_iso3166":"US",
+		"zip":"90001",
+		"latitude":"33.97457886",
+		"longitude":"-118.24745941",
+		"elevation":"50.00000000"
+		},
+		"observation_location": {
+		"full":"South Gate, California",
+		"city":"South Gate",
+		"state":"California",
+		"country":"US",
+		"country_iso3166":"US",
+		"latitude":"33.946083",
+		"longitude":"-118.167137",
+		"elevation":"60 ft"
+		},
+		"estimated": {
+		},
+		"station_id":"KCASOUTH11",
+		"observation_time":"Last Updated on April 7, 4:52 AM PDT",
+		"observation_time_rfc822":"Sat, 07 Apr 2012 04:52:06 -0700",
+		"observation_epoch":"1333799526",
+		"local_time_rfc822":"Sat, 07 Apr 2012 04:52:46 -0700",
+		"local_epoch":"1333799566",
+		"local_tz_short":"PDT",
+		"local_tz_long":"America/Los_Angeles",
+		"local_tz_offset":"-0700",
+		"weather":"Clear",
+		"temperature_string":"62.0 F (16.7 C)",
+		"temp_f":62.0,
+		"temp_c":16.7,
+		"relative_humidity":"33%",
+		"wind_string":"From the SSE at 2.0 MPH Gusting to 6.0 MPH",
+		"wind_dir":"SSE",
+		"wind_degrees":159,
+		"wind_mph":2.0,
+		"wind_gust_mph":"6.0",
+		"wind_kph":3.2,
+		"wind_gust_kph":"9.7",
+		"pressure_mb":"1016",
+		"pressure_in":"30.01",
+		"pressure_trend":"-",
+		"dewpoint_string":"32 F (0 C)",
+		"dewpoint_f":32,
+		"dewpoint_c":0,
+		"heat_index_string":"NA",
+		"heat_index_f":"NA",
+		"heat_index_c":"NA",
+		"windchill_string":"NA",
+		"windchill_f":"NA",
+		"windchill_c":"NA",
+		"visibility_mi":"10.0",
+		"visibility_km":"16.1",
+		"solarradiation":"0",
+		"UV":"0.0",
+		"precip_1hr_string":"0.00 in ( 0 mm)",
+		"precip_1hr_in":"0.00",
+		"precip_1hr_metric":" 0",
+		"precip_today_string":"0.00 in (0 mm)",
+		"precip_today_in":"0.00",
+		"precip_today_metric":"0",
+		"icon":"clear",
+		"icon_url":"http://icons-ak.wxug.com/i/c/k/nt_clear.gif",
+		"forecast_url":"http://www.wunderground.com/US/CA/Los_Angeles.html",
+		"history_url":"http://www.wunderground.com/history/airport/KCASOUTH11/2012/4/7/DailyHistory.html",
+		"ob_url":"http://www.wunderground.com/cgi-bin/findweather/getForecast?query=33.946083,-118.167137"
+	}
+		,
+	"forecast":{
+		"txt_forecast": {
+		"date":"2:00 AM PDT",
+		"forecastday": [
+		{
+		"period":0,
+		"icon":"clear",
+		"icon_url":"http://icons-ak.wxug.com/i/c/k/clear.gif",
+		"title":"Saturday",
+		"fcttext":"Clear. High of 86F. Winds less than 5 mph.",
+		"fcttext_metric":"Clear. High of 30C. Winds less than 5 km/h.",
+		"pop":"0"
+		}
+		,
+		{
+		"period":1,
+		"icon":"clear",
+		"icon_url":"http://icons-ak.wxug.com/i/c/k/clear.gif",
+		"title":"Saturday Night",
+		"fcttext":"Clear. Low of 55F. Winds less than 5 mph.",
+		"fcttext_metric":"Clear. Low of 13C. Winds less than 5 km/h.",
+		"pop":"0"
+		}
+		,
+		{
+		"period":2,
+		"icon":"clear",
+		"icon_url":"http://icons-ak.wxug.com/i/c/k/clear.gif",
+		"title":"Sunday",
+		"fcttext":"Clear. High of 82F. Winds from the West at 5 to 10 mph.",
+		"fcttext_metric":"Clear. High of 28C. Winds from the West at 10 to 15 km/h.",
+		"pop":"0"
+		}
+		,
+		{
+		"period":3,
+		"icon":"clear",
+		"icon_url":"http://icons-ak.wxug.com/i/c/k/clear.gif",
+		"title":"Sunday Night",
+		"fcttext":"Clear. Low of 55F. Winds less than 5 mph.",
+		"fcttext_metric":"Clear. Low of 13C. Winds less than 5 km/h.",
+		"pop":"0"
+		}
+		,
+		{
+		"period":4,
+		"icon":"clear",
+		"icon_url":"http://icons-ak.wxug.com/i/c/k/clear.gif",
+		"title":"Monday",
+		"fcttext":"Clear. High of 82F. Winds from the NNW at 5 to 10 mph shifting to the West in the afternoon.",
+		"fcttext_metric":"Clear. High of 28C. Winds from the NNW at 10 to 15 km/h shifting to the West in the afternoon.",
+		"pop":"0"
+		}
+		,
+		{
+		"period":5,
+		"icon":"clear",
+		"icon_url":"http://icons-ak.wxug.com/i/c/k/clear.gif",
+		"title":"Monday Night",
+		"fcttext":"Partly cloudy. Fog overnight. Low of 55F. Winds less than 5 mph.",
+		"fcttext_metric":"Partly cloudy. Fog overnight. Low of 13C. Winds less than 5 km/h.",
+		"pop":"0"
+		}
+		,
+		{
+		"period":6,
+		"icon":"partlycloudy",
+		"icon_url":"http://icons-ak.wxug.com/i/c/k/partlycloudy.gif",
+		"title":"Tuesday",
+		"fcttext":"Clear in the morning, then partly cloudy. High of 73F. Winds from the SSW at 5 to 10 mph.",
+		"fcttext_metric":"Clear in the morning, then partly cloudy. High of 23C. Winds from the SSW at 5 to 15 km/h.",
+		"pop":"0"
+		}
+		,
+		{
+		"period":7,
+		"icon":"chancerain",
+		"icon_url":"http://icons-ak.wxug.com/i/c/k/chancerain.gif",
+		"title":"Tuesday Night",
+		"fcttext":"Partly cloudy with a chance of rain in the evening, then overcast with a chance of rain. Low of 54F. Winds from the ESE at 5 to 10 mph. Chance of rain 70% with rainfall amounts near 0.6 in. possible.",
+		"fcttext_metric":"Partly cloudy with a chance of rain in the evening, then overcast with a chance of rain. Low of 12C. Winds from the ESE at 10 to 15 km/h. Chance of rain 70% with rainfall amounts near 15.2 mm possible.",
+		"pop":"70"
+		}
+		]
+		},
+		"simpleforecast": {
+		"forecastday": [
+		{"date":{
+	"epoch":"1333864800",
+	"pretty":"11:00 PM PDT on April 07, 2012",
+	"day":7,
+	"month":4,
+	"year":2012,
+	"yday":97,
+	"hour":23,
+	"min":"00",
+	"sec":0,
+	"isdst":"1",
+	"monthname":"April",
+	"weekday_short":"Sat",
+	"weekday":"Saturday",
+	"ampm":"PM",
+	"tz_short":"PDT",
+	"tz_long":"America/Los_Angeles"
+},
+		"period":1,
+		"high": {
+		"fahrenheit":"86",
+		"celsius":"30"
+		},
+		"low": {
+		"fahrenheit":"55",
+		"celsius":"13"
+		},
+		"conditions":"Clear",
+		"icon":"clear",
+		"icon_url":"http://icons-ak.wxug.com/i/c/k/clear.gif",
+		"skyicon":"sunny",
+		"pop":0,
+		"qpf_allday": {
+		"in": 0.00,
+		"mm": 0.0
+		},
+		"qpf_day": {
+		"in": 0.00,
+		"mm": 0.0
+		},
+		"qpf_night": {
+		"in": 0.00,
+		"mm": 0.0
+		},
+		"snow_allday": {
+		"in": 0,
+		"cm": 0
+		},
+		"snow_day": {
+		"in": 0,
+		"cm": 0
+		},
+		"snow_night": {
+		"in": 0,
+		"cm": 0
+		},
+		"maxwind": {
+		"mph": 7,
+		"kph": 11,
+		"dir": "SW",
+		"degrees": 232
+		},
+		"avewind": {
+		"mph": 5,
+		"kph": 8,
+		"dir": "SW",
+		"degrees": 234
+		},
+		"avehumidity": 35,
+		"maxhumidity": 46,
+		"minhumidity": 8
+		}
+		,
+		{"date":{
+	"epoch":"1333951200",
+	"pretty":"11:00 PM PDT on April 08, 2012",
+	"day":8,
+	"month":4,
+	"year":2012,
+	"yday":98,
+	"hour":23,
+	"min":"00",
+	"sec":0,
+	"isdst":"1",
+	"monthname":"April",
+	"weekday_short":"Sun",
+	"weekday":"Sunday",
+	"ampm":"PM",
+	"tz_short":"PDT",
+	"tz_long":"America/Los_Angeles"
+},
+		"period":2,
+		"high": {
+		"fahrenheit":"82",
+		"celsius":"28"
+		},
+		"low": {
+		"fahrenheit":"55",
+		"celsius":"13"
+		},
+		"conditions":"Clear",
+		"icon":"clear",
+		"icon_url":"http://icons-ak.wxug.com/i/c/k/clear.gif",
+		"skyicon":"sunny",
+		"pop":0,
+		"qpf_allday": {
+		"in": 0.00,
+		"mm": 0.0
+		},
+		"qpf_day": {
+		"in": 0.00,
+		"mm": 0.0
+		},
+		"qpf_night": {
+		"in": 0.00,
+		"mm": 0.0
+		},
+		"snow_allday": {
+		"in": 0,
+		"cm": 0
+		},
+		"snow_day": {
+		"in": 0,
+		"cm": 0
+		},
+		"snow_night": {
+		"in": 0,
+		"cm": 0
+		},
+		"maxwind": {
+		"mph": 7,
+		"kph": 11,
+		"dir": "WSW",
+		"degrees": 242
+		},
+		"avewind": {
+		"mph": 6,
+		"kph": 10,
+		"dir": "SW",
+		"degrees": 216
+		},
+		"avehumidity": 40,
+		"maxhumidity": 55,
+		"minhumidity": 24
+		}
+		,
+		{"date":{
+	"epoch":"1334037600",
+	"pretty":"11:00 PM PDT on April 09, 2012",
+	"day":9,
+	"month":4,
+	"year":2012,
+	"yday":99,
+	"hour":23,
+	"min":"00",
+	"sec":0,
+	"isdst":"1",
+	"monthname":"April",
+	"weekday_short":"Mon",
+	"weekday":"Monday",
+	"ampm":"PM",
+	"tz_short":"PDT",
+	"tz_long":"America/Los_Angeles"
+},
+		"period":3,
+		"high": {
+		"fahrenheit":"82",
+		"celsius":"28"
+		},
+		"low": {
+		"fahrenheit":"55",
+		"celsius":"13"
+		},
+		"conditions":"Clear",
+		"icon":"clear",
+		"icon_url":"http://icons-ak.wxug.com/i/c/k/clear.gif",
+		"skyicon":"mostlysunny",
+		"pop":0,
+		"qpf_allday": {
+		"in": 0.00,
+		"mm": 0.0
+		},
+		"qpf_day": {
+		"in": 0.00,
+		"mm": 0.0
+		},
+		"qpf_night": {
+		"in": 0.00,
+		"mm": 0.0
+		},
+		"snow_allday": {
+		"in": 0,
+		"cm": 0
+		},
+		"snow_day": {
+		"in": 0,
+		"cm": 0
+		},
+		"snow_night": {
+		"in": 0,
+		"cm": 0
+		},
+		"maxwind": {
+		"mph": 9,
+		"kph": 14,
+		"dir": "West",
+		"degrees": 260
+		},
+		"avewind": {
+		"mph": 7,
+		"kph": 11,
+		"dir": "SW",
+		"degrees": 234
+		},
+		"avehumidity": 49,
+		"maxhumidity": 93,
+		"minhumidity": 25
+		}
+		,
+		{"date":{
+	"epoch":"1334124000",
+	"pretty":"11:00 PM PDT on April 10, 2012",
+	"day":10,
+	"month":4,
+	"year":2012,
+	"yday":100,
+	"hour":23,
+	"min":"00",
+	"sec":0,
+	"isdst":"1",
+	"monthname":"April",
+	"weekday_short":"Tue",
+	"weekday":"Tuesday",
+	"ampm":"PM",
+	"tz_short":"PDT",
+	"tz_long":"America/Los_Angeles"
+},
+		"period":4,
+		"high": {
+		"fahrenheit":"73",
+		"celsius":"23"
+		},
+		"low": {
+		"fahrenheit":"54",
+		"celsius":"12"
+		},
+		"conditions":"Partly Cloudy",
+		"icon":"partlycloudy",
+		"icon_url":"http://icons-ak.wxug.com/i/c/k/partlycloudy.gif",
+		"skyicon":"partlycloudy",
+		"pop":0,
+		"qpf_allday": {
+		"in": 0.49,
+		"mm": 12.4
+		},
+		"qpf_day": {
+		"in": 0.00,
+		"mm": 0.0
+		},
+		"qpf_night": {
+		"in": 0.60,
+		"mm": 15.2
+		},
+		"snow_allday": {
+		"in": 0,
+		"cm": 0
+		},
+		"snow_day": {
+		"in": 0,
+		"cm": 0
+		},
+		"snow_night": {
+		"in": 0,
+		"cm": 0
+		},
+		"maxwind": {
+		"mph": 9,
+		"kph": 14,
+		"dir": "SSW",
+		"degrees": 203
+		},
+		"avewind": {
+		"mph": 7,
+		"kph": 11,
+		"dir": "SSW",
+		"degrees": 197
+		},
+		"avehumidity": 58,
+		"maxhumidity": 69,
+		"minhumidity": 32
+		}
+		]
+		}
+	}
+}

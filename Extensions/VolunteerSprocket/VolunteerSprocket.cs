@@ -13,7 +13,7 @@ namespace VolunteerSprocket
             get { return new Regex(@"[-_./""\w\s]*volunteer some[-_./""\w\s]*"); }
         }
 
-        protected override void ProcessMatch(Match match, ChatMessage chatMessage, IBot bot)
+        public override void ProcessMatch(Match match, ChatMessage chatMessage, IBot bot)
         {
             Debug.WriteLine("Volunteering!");
             if (chatMessage.Content.StartsWith(bot.Name) || chatMessage.Content.StartsWith("@" + bot.Name))
