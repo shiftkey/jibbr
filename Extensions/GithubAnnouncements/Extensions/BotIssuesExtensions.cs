@@ -21,8 +21,8 @@ namespace GithubAnnouncements.Extensions
                                                      issue.title,
                                                      repo);
                     string secondLine = string.Format("View the discussion at {0}", issue.html_url);
-                    bot.SayToAllRooms(firstLine);
-                    bot.SayToAllRooms(secondLine);
+                    bot.SendToAllRooms(firstLine);
+                    bot.SendToAllRooms(secondLine);
 
                     // track request
                     existingIssues.Add(id, "open");
@@ -49,7 +49,7 @@ namespace GithubAnnouncements.Extensions
                                                  issue.user.login,
                                                  issue.title);
 
-                bot.SayToAllRooms(firstLine);
+                bot.SendToAllRooms(firstLine);
 
                 // cleanup request
                 existingIssues.Remove(id);

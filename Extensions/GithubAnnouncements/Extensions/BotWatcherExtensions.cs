@@ -13,13 +13,13 @@ namespace GithubAnnouncements.Extensions
             var newWatchers = currentWatchers.Except(existingWatchers).ToList();
             foreach (var w in newWatchers)
             {
-                bot.SayToAllRooms(string.Format("{0} is now watching {1}", w, repositoryName));
+                bot.SendToAllRooms(string.Format("{0} is now watching {1}", w, repositoryName));
             }
 
             var noLongerWatching = existingWatchers.Except(currentWatchers).ToList();
             foreach (var w in noLongerWatching)
             {
-                bot.SayToAllRooms(string.Format("{0} is no longer watching {1}", w, repositoryName));
+                bot.SendToAllRooms(string.Format("{0} is no longer watching {1}", w, repositoryName));
             }
 
             return existingWatchers.Concat(newWatchers).Except(noLongerWatching).ToList();

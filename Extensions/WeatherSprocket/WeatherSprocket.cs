@@ -19,7 +19,7 @@ namespace WeatherSprocket
             if (match.Length > 0)
             {
                 var matchResult = match.Captures[0].ToString();
-                bot.Say(getWeather(matchResult), chatMessage.User.Name); ;
+                bot.Send(getWeather(matchResult), chatMessage.User.Name); ;
             }
         }
 

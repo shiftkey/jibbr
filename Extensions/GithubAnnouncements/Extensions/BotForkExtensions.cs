@@ -30,7 +30,7 @@ namespace GithubAnnouncements.Extensions
             var newCommits = commits.TakeWhile(c => c.commit.tree.sha != lastCommit);
 
             // create string to send as message
-            bot.SayToAllRooms(String.Format("{0} added {1} new commits to his fork", id, newCommits.Count<object>()));
+            bot.SendToAllRooms(String.Format("{0} added {1} new commits to his fork", id, newCommits.Count<object>()));
         }
     }
 }

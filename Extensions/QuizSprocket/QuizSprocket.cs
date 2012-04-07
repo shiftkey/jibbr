@@ -267,7 +267,7 @@ namespace QuizSprocket
 
             var orderedScores = _scoreTable.Select(t => new { Name = t.Key, Score = t.Value }).OrderByDescending(t => t.Score).Take(10).ToList();
 
-            if (orderedScores.Count == 0) { Bot.Say("No scores recorded", ChatMessage.Room); return true; }
+            if (orderedScores.Count == 0) { Bot.Send("No scores recorded", ChatMessage.Room); return true; }
 
             stringBuilder.AppendLine("Scoretable:");
 
@@ -277,8 +277,7 @@ namespace QuizSprocket
                 stringBuilder.AppendLine(string.Format("{0,2} - {1} {2}", index + 1, orderedScore.Name.PadRight(15), orderedScore.Score));
             }
 
-            // TODO: need to get current room
-            Bot.Say(stringBuilder.ToString(), "");
+            Bot.Send(stringBuilder.ToString(), ChatMessage.Room);
 
             return true;
         }
@@ -287,7 +286,7 @@ namespace QuizSprocket
         {
             int currentScore;
 
-            Bot.Say(
+            Bot.Send(
                 _scoreTable.TryGetValue(ChatMessage.User.Name, out currentScore)
                     ? string.Format("{0} has a score of {1}", ChatMessage.User.Name, currentScore)
                     : string.Format("No score recorded for {0}", ChatMessage.User.Name), ChatMessage.Room);
@@ -306,8 +305,7 @@ namespace QuizSprocket
 
             if (correct)
             {
-                // TODO: need to get current room
-                Bot.Say(string.Format("Correct {0}, the answer is {1}. That was brilliant!", ChatMessage.User.Name, _lastAskedQuestion.Item2), "");
+                Bot.Send(string.Format("Correct {0}, the answer is {1}. That was brilliant!", ChatMessage.User.Name, _lastAskedQuestion.Item2), ChatMessage.Room);
                 int currentScore = 0;
 
                 if (_scoreTable.TryGetValue(ChatMessage.User.Name, out currentScore))
@@ -322,8 +320,7 @@ namespace QuizSprocket
             }
             else
             {
-                // TODO: need to get current room
-                Bot.Say(string.Format("Wrong!"), "");
+                Bot.Send(string.Format("Wrong!"), ChatMessage.Room);
             }
 
 
@@ -350,15 +347,9 @@ namespace QuizSprocket
                 _lastAskedQuestion = null;
 
             if (_lastAskedQuestion != null)
-            {
-                // TODO: need to get current room
-                Bot.PrivateReply("A question is currently waiting for the correct answer", "");
-            }
+                Bot.PrivateReply("A question is currently waiting for the correct answer", ChatMessage.Room);
             else
-            {
-                // TODO: need to get current room
-                Bot.Say(GetQuestion(questionType), "");
-            }
+                Bot.Send(GetQuestion(questionType), ChatMessage.Room);
 
             return true;
         }

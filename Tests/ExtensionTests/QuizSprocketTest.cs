@@ -29,7 +29,7 @@ namespace ExtensionTests
             _quizSprocket.Handle(chatMessage, _botMock.Object);
 
             //assert
-            _botMock.Verify(b => b.Say(It.IsAny<string>(), It.Is<string>(room => room.Equals("jibbr"))));
+            _botMock.Verify(b => b.Send(It.IsAny<string>(), It.Is<string>(room => room.Equals("jibbr"))));
         }
 
         [Test]
@@ -70,7 +70,7 @@ namespace ExtensionTests
             _quizSprocket.Handle(chatMessage, _botMock.Object);
 
             //assert
-            _botMock.Verify(b => b.Say(It.Is<string>(what => what.Contains("?")), It.IsAny<string>()));
+            _botMock.Verify(b => b.Send(It.Is<string>(what => what.Contains("?")), It.IsAny<string>()));
         }
 
         [Test]
@@ -85,8 +85,8 @@ namespace ExtensionTests
             _quizSprocket.Handle(answerQuestion, _botMock.Object);
 
             //assert
-            _botMock.Verify(b => b.Say(It.Is<string>(what => what.Contains("?")), It.IsAny<string>()));
-            _botMock.Verify(b => b.Say(It.Is<string>(what => what.Contains("Correct") || what.Contains("Wrong")), It.IsAny<string>()));
+            _botMock.Verify(b => b.Send(It.Is<string>(what => what.Contains("?")), It.IsAny<string>()));
+            _botMock.Verify(b => b.Send(It.Is<string>(what => what.Contains("Correct") || what.Contains("Wrong")), It.IsAny<string>()));
         }
 
         [Test]
@@ -101,7 +101,7 @@ namespace ExtensionTests
             _quizSprocket.Handle(askQuestion2, _botMock.Object);
 
             //assert
-            _botMock.Verify(b => b.Say(It.Is<string>(what => what.Contains("?")), It.IsAny<string>()));
+            _botMock.Verify(b => b.Send(It.Is<string>(what => what.Contains("?")), It.IsAny<string>()));
             _botMock.Verify(b => b.PrivateReply(It.Is<string>(what => what.Equals("A question is currently waiting for the correct answer")), It.IsAny<string>()));
         }
 
@@ -120,8 +120,8 @@ namespace ExtensionTests
             _quizSprocket.Handle(answerQuestion, _botMock.Object);
 
             //assert
-            _botMock.Verify(b => b.Say(It.Is<string>(what => what.Equals("a")), It.IsAny<string>()));
-            _botMock.Verify(b => b.Say(It.Is<string>(what => what.Contains("Correct")), It.IsAny<string>()));
+            _botMock.Verify(b => b.Send(It.Is<string>(what => what.Equals("a")), It.IsAny<string>()));
+            _botMock.Verify(b => b.Send(It.Is<string>(what => what.Contains("Correct")), It.IsAny<string>()));
         }
 
         [Test]
@@ -139,8 +139,8 @@ namespace ExtensionTests
             _quizSprocket.Handle(answerQuestion, _botMock.Object);
 
             //assert
-            _botMock.Verify(b => b.Say(It.Is<string>(what => what.Equals("a")), It.IsAny<string>()));
-            _botMock.Verify(b => b.Say(It.Is<string>(what => what.Contains("Correct")), It.IsAny<string>()));
+            _botMock.Verify(b => b.Send(It.Is<string>(what => what.Equals("a")), It.IsAny<string>()));
+            _botMock.Verify(b => b.Send(It.Is<string>(what => what.Contains("Correct")), It.IsAny<string>()));
         }
 
         [Test]
@@ -153,7 +153,7 @@ namespace ExtensionTests
             _quizSprocket.Handle(chatMessage, _botMock.Object);
 
             //assert
-            _botMock.Verify(b => b.Say(It.Is<string>(what => what.Equals("No score recorded for Simon")), It.IsAny<string>()));
+            _botMock.Verify(b => b.Send(It.Is<string>(what => what.Equals("No score recorded for Simon")), It.IsAny<string>()));
         }
 
         [Test]
@@ -167,7 +167,7 @@ namespace ExtensionTests
             _quizSprocket.Handle(chatMessage, _botMock.Object);
 
             //assert
-            _botMock.Verify(b => b.Say(It.Is<string>(what => what.Contains("10")), It.IsAny<string>()));
+            _botMock.Verify(b => b.Send(It.Is<string>(what => what.Contains("10")), It.IsAny<string>()));
         }
 
         [Test]
@@ -181,7 +181,7 @@ namespace ExtensionTests
             _quizSprocket.Handle(chatMessage, _botMock.Object);
 
             //assert
-            _botMock.Verify(b => b.Say(It.Is<string>(what => what.Contains("1") && what.Contains("Simon") && what.Contains("10")), It.IsAny<string>()));
+            _botMock.Verify(b => b.Send(It.Is<string>(what => what.Contains("1") && what.Contains("Simon") && what.Contains("10")), It.IsAny<string>()));
         }
 
     }

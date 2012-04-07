@@ -21,10 +21,7 @@ namespace SampleAnnouncement
 
 			var message = string.Format("The time in AEDST (Sydney time) is now {0}", now.ToString("hh:mm:ss tt, dd MMMM yyyy"));
 
-			foreach (var room in bot.Rooms)
-			{
-				bot.Say(message, room);
-			}
+		    bot.SendToAllRooms(message);
 		}
 	}
 }

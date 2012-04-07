@@ -27,8 +27,8 @@ namespace GithubAnnouncements.Extensions
                                      ? "The merge request was accepted. Awesome!"
                                      : "The merge request was not accepted. Sadface!";
 
-                bot.SayToAllRooms(firstLine);
-                bot.SayToAllRooms(secondLine);
+                bot.SendToAllRooms(firstLine);
+                bot.SendToAllRooms(secondLine);
 
                 // cleanup request
                 existingPullRequests.Remove(id);
@@ -52,8 +52,8 @@ namespace GithubAnnouncements.Extensions
                                                  request.title,
                                                  repositoryName);
                 string secondLine = string.Format("Please review the request at {0}", request.html_url);
-                bot.SayToAllRooms(firstLine);
-                bot.SayToAllRooms(secondLine);
+                bot.SendToAllRooms(firstLine);
+                bot.SendToAllRooms(secondLine);
 
                 // track request
                 existingPullRequests.Add(id, "open");

@@ -40,13 +40,13 @@ namespace DisqusAnnouncer
             {
                 var thread = threads.SingleOrDefault(t => t.id == post.thread);
 
-                foreach (var room in bot.Rooms)
+                foreach (var room in bot.GetRooms().Result)
                 {
                     var msg = Regex.Replace(post.message.ToString(), @"<br>", "\n");
                     msg = Regex.Replace(msg, @"\"" rel=\""nofollow\"">[-./""\w\s]*://[-./""\w\s]*", string.Empty);
                     msg = Regex.Replace(msg, @"<a href=\""", string.Empty);
                     msg = Regex.Replace(msg, @"<(.|\n)*?>", string.Empty);
-                    bot.Say(
+                    bot.Send(
                         string.Format("{0} - {1} ({2}) - {3}", thread == null ? "Unknown" : thread.title,
                                       post.author.name, DateTime.Parse(post.createdAt.ToString()), msg), room);
                 }

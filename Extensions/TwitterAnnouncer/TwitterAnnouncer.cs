@@ -55,13 +55,13 @@ namespace TwitterAnnouncer
 
 			latestTweet = latestTweets.First();
 
-			foreach (var room in bot.Rooms)
+			foreach (var room in bot.GetRooms().Result)
 			{
-				bot.Say(string.Format("Latests tweets from @{0}", TwitterUserName), room);
+				bot.Send(string.Format("Latests tweets from @{0}", TwitterUserName), room);
 
 				foreach (var tweet in latestTweets)
 				{
-					bot.Say(tweet.TextDecoded, room);
+					bot.Send(tweet.TextDecoded, room);
 				}
 			}
 		}

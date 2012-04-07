@@ -18,14 +18,11 @@ namespace VolunteerSprocket
             Debug.WriteLine("Volunteering!");
             if (chatMessage.Content.StartsWith(bot.Name) || chatMessage.Content.StartsWith("@" + bot.Name))
             {
-                var users = bot.GetUsers(chatMessage.User.Name).ToList<dynamic>();
+                var users = bot.GetUsers(chatMessage.Room).Result.Where(c => c != bot.Name).ToList();
 
-                users.RemoveAll(u => u.Name == bot.Name);
-
-                if(users.Count == 0)
+                if(!users.Any())
                 {
-                    // TODO: .Receiver is a room?
-                    bot.Say("Bot, you can't tell yourself to do that", ""); // ChatMessage.Receiver);
+                    bot.Send("Bot, you can't tell yourself to do that", chatMessage.Room);
                     return;
                 }
 
@@ -33,7 +30,7 @@ namespace VolunteerSprocket
 
                 var randomUser = random.Next(0, users.Count() - 1);
 
-                bot.Say(string.Format("I volunteer {0} for that!", users[randomUser].Name), ""); // ChatMessage.Receiver);
+                bot.Send(string.Format("I volunteer {0} for that!", users[randomUser]), chatMessage.Room);
             }
         }
     }

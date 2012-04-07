@@ -68,14 +68,13 @@ namespace Jabbot.Extensions
             catch (Exception ex)
             {
                 if (ex is ArgumentException || ex is EvaluationException)
-                    // TODO: where is receiver coming from?
-                    Bot.Say(string.Format("Sorry {0} - i couldn't evaluate your expression", ChatMessage.User.Name), ""); // ChatMessage.Receiver);
+                    Bot.Send(string.Format("Sorry {0} - i couldn't evaluate your expression", ChatMessage.User.Name), ChatMessage.Room);
             }
 
             if (result == null)
                 return false;
 
-            Bot.Say(string.Format("{0} = {1}", mathExpression, result), ChatMessage.User.Name);
+            Bot.Send(string.Format("{0} = {1}", mathExpression, result), ChatMessage.User.Name);
 
             return true;
         }

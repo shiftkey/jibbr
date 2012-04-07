@@ -36,9 +36,9 @@ namespace UserVoiceAnnouncer
 
             foreach (var suggestion in suggestions.Where(s => DateTime.Parse(s.created_at.ToString()) > LastUpdate && DateTime.Parse(s.created_at.ToString()) > DateTime.Now.AddDays(-1)).OrderBy(s => DateTime.Parse(s.created_at.ToString())))
             {
-                    foreach (var room in bot.Rooms)
+                    foreach (var room in bot.GetRooms().Result)
                     {
-                        bot.Say(string.Format("{0}", suggestion.url), room);
+                        bot.Send(string.Format("{0}", suggestion.url), room);
                     }
 
                 LastUpdate = DateTime.Parse(suggestion.created_at.ToString());

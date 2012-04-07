@@ -17,8 +17,7 @@ namespace SampleSprocket
 
 		public override bool ExecuteCommand()
 		{
-            // TODO: need to get current room
-			Bot.Say(string.Format("Hello {0}", ChatMessage.User.Name), "");
+            Bot.Send(string.Format("Hello {0}", ChatMessage.User.Name), ChatMessage.Room);
 
 			return true;
 		}

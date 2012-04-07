@@ -43,7 +43,7 @@ namespace ExtensionTests
             _calculatorSprocket.Handle(chatMessage, _botMock.Object);
 
             //assert
-            _botMock.Verify(b => b.Say(It.Is<string>(what => what.Equals(string.Format("{0} = {1}", expression, "4"))), It.IsAny<string>()));
+            _botMock.Verify(b => b.Send(It.Is<string>(what => what.Equals(string.Format("{0} = {1}", expression, "4"))), It.IsAny<string>()));
         }
 
         [Test]
@@ -56,7 +56,7 @@ namespace ExtensionTests
             _calculatorSprocket.Handle(chatMessage, _botMock.Object);
 
             //assert
-            _botMock.Verify(b => b.Say(It.Is<string>(what => what.Contains("Sorry")), It.IsAny<string>()));
+            _botMock.Verify(b => b.Send(It.Is<string>(what => what.Contains("Sorry")), It.IsAny<string>()));
         }
 
         [Test]
@@ -70,7 +70,7 @@ namespace ExtensionTests
             _calculatorSprocket.Handle(chatMessage, _botMock.Object);
 
             //assert
-            _botMock.Verify(b => b.Say(It.Is<string>(what => what.Equals(string.Format("{0} = {1}", expression, "4"))), It.IsAny<string>()));
+            _botMock.Verify(b => b.Send(It.Is<string>(what => what.Equals(string.Format("{0} = {1}", expression, "4"))), It.IsAny<string>()));
         }
     }
 }

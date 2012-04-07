@@ -25,7 +25,7 @@ namespace GithubAnnouncements.Extensions
             // split into rows and send to rooms
             var rows = sb.ToString().Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
             foreach (var row in rows)
-                bot.SayToAllRooms(row);
+                bot.SendToAllRooms(row);
         }
     }
 }

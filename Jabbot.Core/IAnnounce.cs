@@ -1,22 +1,76 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using JabbR.Client;
 
 namespace Jabbot.Core
 {
-    public interface IAnnounce {
+    public interface IAnnounce
+    {
         TimeSpan Interval { get; }
         void Execute(IBot bot);
     }
 
+    public static class BotExtensions
+    {
+        public static Task SendToAllRooms(this IBot bot, string text)
+        {
+            return bot.GetRooms()
+                .ContinueWith(c =>
+                {
+                    foreach (var room in c.Result)
+                    {
+                        bot.Send(text, room).Wait();
+                    }
+                });
+        }
+    }
+
+    public class Bot : IBot
+    {
+        private readonly JabbRClient _client;
+
+        public Bot(JabbRClient client)
+        {
+            _client = client;
+        }
+
+        public string Name
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public Task Send(string text, string room)
+        {
+            return _client.Send(text, room);
+        }
+
+        public Task PrivateReply(string userName, string message)
+        {
+            return _client.SendPrivateMessage(userName, message);
+        }
+
+        public Task<IEnumerable<string>> GetUsers(string room)
+        {
+            return _client.GetRoomInfo(room)
+               .ContinueWith(c => c.Result.Users.Select(u => u.Name));
+        }
+
+        public Task<IEnumerable<string>> GetRooms()
+        {
+            return _client.GetRooms().ContinueWith(c => c.Result.Select(r => r.Name));
+        }
+    }
+
     public interface IBot
     {
-        IEnumerable<string> Rooms { get; }
         string Name { get; }
-        void SayToAllRooms(string text);
-        void Say(string text, string room);
-        void PrivateReply(string userName, string message);
-        IEnumerable<string> GetUsers(string name);
+        Task Send(string text, string room);
+        Task PrivateReply(string userName, string message);
+        Task<IEnumerable<string>> GetUsers(string room);
+        Task<IEnumerable<string>> GetRooms();
     }
 
     public interface ISprocket { }
@@ -27,7 +81,8 @@ namespace Jabbot.Core
 
     public class CommandSprocket : ISprocket { }
 
-    public class RegexSprocket : ISprocket {
+    public class RegexSprocket : ISprocket
+    {
         public virtual Regex Pattern
         {
             get { throw new NotImplementedException(); }
@@ -59,7 +114,7 @@ namespace Jabbot.Core
         public ChatMessage(string message, string user, string room)
         {
             Content = message;
-            User = new User {Name = user};
+            User = new User { Name = user };
             Room = room;
         }
 
